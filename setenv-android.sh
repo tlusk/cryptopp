@@ -57,13 +57,13 @@ fi
 # like ANDROID_NDK_ROOT=/opt/android-ndk-r10e or ANDROID_NDK_ROOT=/usr/local/android-ndk-r10e.
 
 if [ -z "$ANDROID_NDK_ROOT" ]; then
-  ANDROID_NDK_ROOT=$(find /opt -maxdepth 1 -type d -name android-ndk-r10* 2>/dev/null | tail -1)
+  ANDROID_NDK_ROOT=$(find /opt -maxdepth 1 -name android-ndk-r10* 2>/dev/null | tail -1)
 
   if [ -z "$ANDROID_NDK_ROOT" ]; then
-    ANDROID_NDK_ROOT=$(find /usr/local -maxdepth 1 -type d -name android-ndk-r10* 2>/dev/null | tail -1)
+    ANDROID_NDK_ROOT=$(find /usr/local -maxdepth 1 -name android-ndk-r10* 2>/dev/null | tail -1)
   fi
   if [ -z "$ANDROID_NDK_ROOT" ]; then
-    ANDROID_NDK_ROOT=$(find $HOME -maxdepth 1 -type d -name android-ndk-r10* 2>/dev/null | tail -1)
+    ANDROID_NDK_ROOT=$(find $HOME -maxdepth 1 -name android-ndk-r10* 2>/dev/null | tail -1)
   fi
 fi
 
@@ -291,10 +291,12 @@ case "$THE_STL" in
 	;;
   llvm-static)
 	AOSP_STL_INC="$ANDROID_NDK_ROOT/sources/cxx-stl/llvm-libc++/libcxx/include"
+	AOSP_BITS_INC="$ANDROID_NDK_ROOT/sources/cxx-stl/../android/support/include"
 	AOSP_STL_LIB="$ANDROID_NDK_ROOT/sources/cxx-stl/llvm-libc++/libs/$AOSP_ABI/libc++_static.a"
 	;;
   llvm|llvm-shared)
 	AOSP_STL_INC="$ANDROID_NDK_ROOT/sources/cxx-stl/llvm-libc++/libcxx/include"
+	AOSP_BITS_INC="$ANDROID_NDK_ROOT/sources/cxx-stl/../android/support/include"
 	AOSP_STL_LIB="$ANDROID_NDK_ROOT/sources/cxx-stl/llvm-libc++/libs/$AOSP_ABI/libc++_shared.so"
 	;;
   *)
